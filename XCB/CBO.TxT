@@ -1,0 +1,6 @@
+; friends e-mails
+chico@yahoo.com=Frank
+maria@lou.com=Mary
+carlos@whoo.on.line.com.br=Charles
+margarida@loa.com=Dayse
+joao@tower.com.sl=Johnny

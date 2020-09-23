@@ -1,0 +1,5 @@
+; My Test example
+; simple genre information
+1=Male
+2=Female
+

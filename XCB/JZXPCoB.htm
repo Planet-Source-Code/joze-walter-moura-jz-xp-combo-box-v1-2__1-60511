@@ -1,0 +1,229 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>JZ TX Combo Box Control</TITLE>
+<META NAME="Template" CONTENT="C:\Arquivos de programas\Microsoft Office\Modelos\Artigo.dot">
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=5><P>JZ XP COMBO BOX v1.1</P>
+</B></FONT><P>Normal combo control, XP enhanced style, very easy and objective (programmer and user).</P>
+<P>Two more significant resources: <B>TagCode</B> (an invisible string array associated to Combo List lines)  and <B>Save/Load</B> as editable Text File, beyond direct maintenance (insert, append, update and remove functions) and a silent operational GetItem function..</P>
+<P> .</P>
+<B><FONT SIZE=4><P>Using as normal Combo Box</P>
+</B></FONT><P>This mode is for Input purposes:</P>
+<OL>
+
+<B><LI>How to initialize the Combo</LI>
+</B>
+<FONT FACE="Courier New"><P>Cb1.Clear  ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">Resets all in Combo</P>
+</FONT><FONT FACE="Courier New">
+<P>Cb1.AddItem &quot;Monday&quot;  ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">items charging</P>
+</FONT><FONT FACE="Courier New"><P>Cb1.AddItem &quot;Tuesday&quot;</P>
+<P>Cb1.AddItem &quot;Friday&quot;</P>
+<P>  ... etc</P>
+
+<P>   Cb1.Locked = True ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">user no allowed to type on it</P>
+</FONT><B><LI>How to get a user selected item</LI></OL>
+
+</B><DIR>
+
+<FONT FACE="Courier New"><P>StrWDay = Cb1.Text  ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">this reflects last selected item all time</FONT> </P>
+<P>&nbsp;</P></DIR>
+
+<B><FONT SIZE=5><P>Using TagCode</P>
+</B></FONT><P>When we have a small technical code to be stored but we would show  friendly means to user.  See this:</P>
+<P>&nbsp;</P>
+<OL>
+
+<B><LI>How to Initialize the Combo &quot;on board&quot;</LI>
+</B>
+<FONT FACE="Courier New"><P>Cb1.Clear  ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">Resets all in Combo</P>
+
+</FONT><FONT FACE="Courier New"><P>Cb1.TagCode</FONT><FONT FACE="Courier New" COLOR="#008000"> </FONT><FONT FACE="Courier New">= True</FONT><FONT FACE="Courier New" COLOR="#008000"> ‘ Sets the TagCode option</P>
+</FONT><FONT FACE="Courier New">
+<P>Cb1.AddItem &quot;SA=South Africa&quot;  ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">items charging as &quot;xxx=yyy&quot;</P>
+</FONT><FONT FACE="Courier New"><P>Cb1.AddItem &quot;BR=Brazil&quot;</P>
+<P>Cb1.AddItem &quot;FR=France&quot;</P>
+<P>  ... Etc</P>
+
+</FONT><P>The &quot;equal&quot; character (=) is all you need to inform the control to do it:</P>
+<P>TagCodes may be different sized, no blank strings.</P>
+
+<P>First member will be on an invisible table setting as Combo list items.</P>
+<P>Second member will be visible at Combo list. </P>
+
+<P>(In this version, the maximum TagCode items is 100 – alter it if you need it)</P>
+<FONT FACE="Courier New">
+<P>&nbsp;</P>
+<P>   Cb1.Locked = True ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">user no allowed to type on it</P>
+</FONT><P>&nbsp;</P>
+<B><LI>How to clear only the Combo text area when form is prepared for a new item</LI>
+</B>
+<FONT FACE="Courier New"><P>Cb1.Text = &quot;&quot;  </FONT><FONT FACE="Courier New" COLOR="#008000">‘ identical a Text Box</FONT> </P>
+<B><LI>How to show item corresponding certain TagCode (maybe readed from file storage)</LI>
+</B>
+<FONT FACE="Courier New"><P>StrCountryCode = &lt;obtained file code, e.g., &quot;FR&quot;&gt;</P>
+
+<P>If SetTagCode(StrCountryCode) them </FONT><FONT FACE="Courier New" COLOR="#008000">‘Combo was positioned ListIndex=3, Text=&quot;France&quot;</P>
+</FONT><FONT FACE="Courier New">
+<P>Else ... </FONT><FONT FACE="Courier New" COLOR="#008000">‘Returns False if there is no corresponding TagCode value on table – maybe a inconsistency</P>
+</FONT><P>&nbsp;</P>
+<B><LI>How to get TagCode corresponding a selected item</LI></OL>
+
+</B><DIR>
+
+<FONT FACE="Courier New"><P>StrCountryName = Cb1.Text ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">rarely ... this is the item</P>
+</FONT><FONT FACE="Courier New"><P>StrCountryCode = GetTagCode ‘ </FONT><FONT FACE="Courier New" COLOR="#008000">returns TagCode corr selected item</FONT><FONT FACE="Courier New"> </P>
+</FONT><P>&nbsp;</P></DIR>
+
+<B><FONT SIZE=4><P>Using Text File Load/Save</P>
+</B></FONT><P>When a Combo is charged by AddItem method this is a &quot;On Board&quot; loading.</P>
+<P>Another technique is Load the Combo from a Text File.</P>
+<P>The text is identical an additem series, blank lines ignored, initial (;) character is remarks.</P>
+<P>Example of text lines:</P>
+
+<FONT FACE="Courier New"><P>; Countries Table for Combo</P>
+<P>SA=South Africa</P>
+<P>BR=Brazil</P>
+<P>FR=France</P>
+<P>PO=Portugal</P>
+<P>... etc</P>
+</FONT>
+<P>The TagCode property is automatically setting by recognizing a &quot;equal&quot; (=) or not at first significant line of text.</P>
+<OL>
+
+<B><LI>How to initialize the Combo from Text File</LI>
+</B>
+<FONT FACE="Courier New"><P>Cb1.FileName = App.Path &amp; &quot;\Countries.Txt&quot; </FONT><FONT FACE="Courier New" COLOR="#008000">‘ combo file path</FONT><FONT FACE="Courier New"> </P>
+
+<P>If Cb1.LoadedFromFile then</P>
+<P>   </FONT><FONT FACE="Courier New" COLOR="#008000">‘ combo is ready to use as above</P>
+</FONT><FONT FACE="Courier New"><P>Else</P>
+<P>   </FONT><FONT FACE="Courier New" COLOR="#008000">‘ error on file, not exists, etc</FONT><FONT FACE="Courier New">  </P>
+<P>End If</P>
+<P>&nbsp;</P>
+</FONT><B><LI>How to save actual Combo elements to a Text File (case has been modified)</LI></OL>
+
+</B><DIR>
+
+<FONT FACE="Courier New"><P>Cb1.FileName = App.Path &amp; &quot;\Countries.Txt&quot; </FONT><FONT FACE="Courier New" COLOR="#008000">‘ combo file path</FONT><FONT FACE="Courier New"> </P>
+
+<P>If Cb1.SaveToFile then</P>
+<P>   </FONT><FONT FACE="Courier New" COLOR="#008000">‘ combo is saved with success</P>
+</FONT><FONT FACE="Courier New"><P>Else</P>
+<P>   </FONT><FONT FACE="Courier New" COLOR="#008000">‘ error on file, path, etc</FONT><FONT FACE="Courier New">. </P>
+<P>End If</P>
+</FONT><P>&nbsp;</P></DIR>
+
+<B><FONT SIZE=4><P>Using Maintenance Methods</P>
+</B></FONT><P>If your application admits programmatic or uses operated modifications, maybe you will use it as a mini data table, with saving to a text file and retrieving next time, use this: </P>
+<OL>
+
+<B><LI>Append</LI>
+</B><P>A new Item will be appended as last combo list:</P>
+
+<P>     <FONT FACE="Courier New">Cb1.AddItem  (item As String</FONT>)</P>
+<P>&nbsp;</P>
+<B><LI>Insert</LI>
+</B><P>A new item will be inserted BEFORE the index informed  as parameter</P>
+
+<P>    <FONT FACE="Courier New">Cb1.AddItem (item As String, index As Variant</FONT>) </P>
+
+<P>    After this, the Cb1.ListIndex will be the parameter index and all past it will be shifted by 1.</P>
+<P>&nbsp;</P>
+<B><LI>Update</LI>
+</B><P>The item value will replace list pointed as parameter</P>
+
+<P>     <FONT FACE="Courier New">Cb1.UpdateItem  (item As String, index As Variant)</P>
+</FONT>
+<P>     After this, Cb1.List (index) will be substituted by item</P>
+<B><LI>Remove pointed</LI>
+</B><P>Item will disappear from Combo list: </P>
+
+<FONT FACE="Courier New"><P>  Cb1.RemoveItem (index As Variant)</P>
+</FONT><P>     </P>
+<P>After this, pointed Cb1.List (index) will be deleted, all after will be shrieked by –1.</P>
+<B><LI>Remove last item</LI>
+</B><P>This will delete the Cb1.ListCount – 1 combo list:</P>
+
+<P>      <FONT FACE="Courier New">Cb1.RemoveItem</P>
+</FONT><P>&nbsp;</P>
+<B><LI>Sample 1:</LI>
+</B><P>We are using a TagCode with items as &quot;xx=yyyy&quot; referent code countries, so we want find and exclude  a &quot;AL=AliceLand&quot; item, so:</P>
+
+<FONT FACE="Courier New"><P>  If Cb1.GetTagCode(&quot;AL&quot;) Then </FONT><FONT FACE="Courier New" COLOR="#008000">‘ getting the index TagCode</FONT><FONT FACE="Courier New">  </P>
+<P>     Cb1.RemoveItem Cb1.ListIndex</P>
+<P>  End If</P>
+</FONT><P>&nbsp;</P>
+<B><LI>Sample 2</LI></OL>
+
+</B><P>We need insert a TagCode item in the first local of Combo list:</P>
+
+<FONT FACE="Courier New"><P>  Cb1.AddItem &quot;AL=AliceLand&quot;, 0  </FONT><FONT FACE="Courier New" COLOR="#008000">‘ remember 0 is the first listindex</FONT><FONT FACE="Courier New"> </P>
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=4><P>Miscellaneous</P>
+<OL>
+
+</FONT><LI>Silent Retrieve items of Control</LI></OL>
+
+</B><P>This sample show how do copy of items to a array:</P>
+
+<FONT FACE="Courier New"><P>      Dim i As Long</P>
+<P>      I = 0</P>
+</FONT><FONT FACE="Courier New" COLOR="#008000"><P>‘ assumes array is empty</FONT><FONT FACE="Courier New">      </P>
+<P>      Do while i &lt; Cb1.LinstCount</P>
+<P>            Array(i) = Cb1.GetItem (i)</P>
+<P>            I = i + 1</P>
+<P>      Loop</P>
+</FONT>
+<P>Note: if you are using TagCode then the string will be returned in format</P>
+<P>&quot;xxx=yyyy&quot;,  where xxx=TagCode and yyyy=proper List string. </P>
+<P>&nbsp;</P>
+<B><FONT SIZE=4><P>FINALLY ...</P>
+</FONT><P>How to functionality and test control aspects</P>
+</B><P>Of course you already unzips all kit to a directory.</P>
+<P>So, use VB to open the JZXPCb.Vbp project.</P>
+<P>Compile it and test varieties at Demo/Tutor/Test form.</P>
+
+<P>Note the .Txt files, which can be notepad edited and loaded to test form.</P>
+
+<P>Enjoy!</P>
+<B><P>How to use the JZ XP Control in your Application (for novices)</P>
+</B>
+<OL>
+
+<LI>Copy the source file JZXPCb.Ctl to your project directory; and</LI>
+<LI>Open our project VB IDE</LI>
+<LI>Add it as an existent UserControl  (note the control icon will appear at Tool Window)</LI></OL>
+
+<P>&nbsp;</P>
+<B><P>If you find bugs, do improves or enhances to source code,</P>
+</B><P>Send me a copy if you please, OKs?</P>
+
+<FONT SIZE=2><P>JOZE Walter de Moura – RIO DE JANEIRO – Brazil</P>
+<P> – www-joze.it.net  or  qualyum@globo.com</P>
+</FONT><P>&nbsp;</P>
+<B><FONT SIZE=4><P>Version 1.1</P>
+</FONT><P>Enhancements</P>
+<OL>
+
+</B><LI>New function GetItem([index] As String</LI></OL>
+<DIR>
+
+<P>Returns a string reflecting the &quot;combo.List&quot; pointed item.</P>
+<P>If TagCode feature is True, it returns leading TagCode, if format &quot;xxx=yyyy&quot;. </P></DIR>
+
+<B><P>Fixed</P>
+</B><P>1. Events KeyPress, KeyDown, KeyUp, MouseMove and MouseDown to proper work.</P>
+<B><P>Know Errors</P>
+<OL>
+
+</B><LI>When combo appears scrolled, in a non-XP Windows, the ScrollBars are not in the</LI></OL>
+
+<P>     same style. (I’m thinking it’s not a fundamental against a non-strong code, but, if you</P>
+<P>     have a good code, e-mail me, please.</P>
+
+<P>-oOo-oOo-oOo-</P></BODY>
+</HTML>
