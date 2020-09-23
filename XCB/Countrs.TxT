@@ -1,0 +1,16 @@
+BR=Brazil
+PA=Panama
+RA=Argentine
+FR=France
+SA=South Africa
+US=United States
+UK=England
+CH=China
+RU=Russia
+NL=Holland
+ES=Spain
+IT=Italy
+CA=Canada
+SW=Switzerland
+MO=Monaco
+PO=Portugal

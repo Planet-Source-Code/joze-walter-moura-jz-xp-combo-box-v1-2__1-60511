@@ -1,0 +1,15 @@
+; Colors example
+#FFFFFF=White
+#00BB00=Green
+#FFFF00=Yellow
+#0000FF=Blue
+#FF0000=Red
+#000000=Black
+#FF8040=Orange
+#FF8080=Salmon
+#C0C0C0=Gray
+#8000FF=Violet
+#800000=Brown
+#9D9DFF=My Blue
+
+
